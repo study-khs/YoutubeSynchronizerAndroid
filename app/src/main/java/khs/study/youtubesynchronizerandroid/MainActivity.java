@@ -16,6 +16,7 @@ import com.facebook.login.widget.LoginButton;
 import java.util.Arrays;
 
 import khs.study.youtubesynchronizerandroid.domain.ApiResponseDto;
+import khs.study.youtubesynchronizerandroid.domain.AuthorizationToken;
 import khs.study.youtubesynchronizerandroid.retrofit.DefaultClient;
 import khs.study.youtubesynchronizerandroid.retrofit.UserJoinWithFacebookNetwork;
 import retrofit2.Call;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private UserJoinWithFacebookNetwork mUserJoinWithFacebookNetwork;
 
     private String facebookToken;
+    private AuthorizationToken mAuthorizationToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,21 +104,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getUserJoinWithFacebookNetwork(String type, String token) {
-        Call<ApiResponseDto> call = mUserJoinWithFacebookNetwork
+        Call<ApiResponseDto<AuthorizationToken>> call = mUserJoinWithFacebookNetwork
                                 .getUserJoinWithFacebookNetwork(type, token);
 
-        call.enqueue(new Callback<ApiResponseDto>() {
+        call.enqueue(new Callback<ApiResponseDto<AuthorizationToken>>() {
             @Override
-            public void onResponse(Call<ApiResponseDto> call, Response<ApiResponseDto> response) {
+            public void onResponse(Call<ApiResponseDto<AuthorizationToken>> call,
+                                   Response<ApiResponseDto<AuthorizationToken>> response) {
                 if (response.isSuccessful()) {
                     Log.d(TAG, "onResponse: isSuccessful");
 
-                    ApiResponseDto apiResponseDto = response.body();
+                    ApiResponseDto<AuthorizationToken> apiResponseDto = response.body();
                     if ("200".equals(apiResponseDto.getResultCode())) {
-                        // todo save apiResponseDto
+
                         Log.d(TAG, "onResponse: "+apiResponseDto.getData());
 
-                        // todo facebook logout
+                        setmAuthorizationToken(apiResponseDto.getData());
+                        Log.d(TAG, "onResponse: " + apiResponseDto.getData().getAuthorizationToken());
                         LoginManager.getInstance().logOut();
                         FacebookSdk.sdkInitialize(getApplicationContext());
                     } else {
@@ -128,12 +132,16 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ApiResponseDto> call, Throwable t) {
+            public void onFailure(Call<ApiResponseDto<AuthorizationToken>> call, Throwable t) {
                 Log.d(TAG, "onFailure: ");
                 t.printStackTrace();
             }
         });
 
         Log.d(TAG, "getUserJoinWithFacebookNetwork: ");
+    }
+
+    public void setmAuthorizationToken(AuthorizationToken mAuthorizationToken) {
+        this.mAuthorizationToken = mAuthorizationToken;
     }
 }

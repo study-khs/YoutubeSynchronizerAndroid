@@ -1,6 +1,7 @@
 package khs.study.youtubesynchronizerandroid.retrofit;
 
 import khs.study.youtubesynchronizerandroid.domain.ApiResponseDto;
+import khs.study.youtubesynchronizerandroid.domain.AuthorizationToken;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -11,5 +12,5 @@ import retrofit2.http.Header;
 
 public interface UserJoinWithFacebookNetwork {
     @GET("loginWithFacebook")
-    Call<ApiResponseDto> getUserJoinWithFacebookNetwork(@Header("userType") String type, @Header("token") String token);
+    Call<ApiResponseDto<AuthorizationToken>> getUserJoinWithFacebookNetwork(@Header("userType") String type, @Header("token") String token);
 }
