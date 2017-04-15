@@ -17,11 +17,22 @@ import com.facebook.login.widget.LoginButton;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.List;
+
+import khs.study.youtubesynchronizerandroid.domain.User;
+import khs.study.youtubesynchronizerandroid.retrofit.DefaultClient;
+import khs.study.youtubesynchronizerandroid.retrofit.UserJoinWithFacebookNetwork;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "JYP/"+getClass().getSimpleName();
     private LoginButton mFacebookLoginBtn;
     private CallbackManager callbackManager;
+
+    private DefaultClient<UserJoinWithFacebookNetwork> mDefaultClient;
+    private UserJoinWithFacebookNetwork mUserJoinWithFacebookNetwork;
 
     private String facebookToken;
 
@@ -32,6 +43,15 @@ public class MainActivity extends AppCompatActivity {
 
         // facebook init
         initFacebookLogin();
+
+        // retrofit init
+        initRetrofit();
+    }
+
+    private void initRetrofit() {
+        mDefaultClient = new DefaultClient<>();
+        mUserJoinWithFacebookNetwork = mDefaultClient.getClient(
+                UserJoinWithFacebookNetwork.class);
     }
 
     private void initFacebookLogin() {
@@ -81,5 +101,35 @@ public class MainActivity extends AppCompatActivity {
 
     private void sendFacebookTokenToServer() {
         Log.d(TAG, "sendFacebookTokenToServer: " + facebookToken);
+
+        getUserJoinWithFacebookNetwork("facebook", facebookToken);
+    }
+
+    private void getUserJoinWithFacebookNetwork(String type, String token) {
+        Call<User> call = mUserJoinWithFacebookNetwork
+                                .getUserJoinWithFacebookNetwork(type, token);
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful()) {
+                    User user = response.body();
+
+                    Log.d(TAG, "onResponse: "+user.toString());
+                    // todo save user
+                    Log.d(TAG, "onResponse: isSuccessful");
+                } else {
+                    Log.d(TAG, "onResponse: isFailure");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.d("jyp", "get fail2");
+                t.printStackTrace();
+            }
+        });
+
+        Log.d(TAG, "getUserJoinWithFacebookNetwork: ");
     }
 }
