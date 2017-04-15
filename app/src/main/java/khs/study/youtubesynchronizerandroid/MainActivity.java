@@ -9,6 +9,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
@@ -114,6 +115,10 @@ public class MainActivity extends AppCompatActivity {
                     if ("200".equals(apiResponseDto.getResultCode())) {
                         // todo save apiResponseDto
                         Log.d(TAG, "onResponse: "+apiResponseDto.getData());
+
+                        // todo facebook logout
+                        LoginManager.getInstance().logOut();
+                        FacebookSdk.sdkInitialize(getApplicationContext());
                     } else {
                         Log.d(TAG, "onResponse: Unexpected Response");
                     }
