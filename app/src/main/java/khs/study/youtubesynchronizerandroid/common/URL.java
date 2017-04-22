@@ -5,9 +5,13 @@ package khs.study.youtubesynchronizerandroid.common;
  */
 
 public class URL {
-    private static String ourServerURL = "http://13.124.12.120:8081/";
+    private static final String ourServerURL = "http://13.124.12.120:8081/";
+    private static final String youtubeDataApiURL = "https://www.googleapis.com/";
 
-    public static String getURL() {
+    public static String getOurServerURL() {
         return ourServerURL;
+    }
+    public static String getYoutubeDataApiURL() {
+        return youtubeDataApiURL;
     }
 }
