@@ -1,4 +1,4 @@
-package khs.study.youtubesynchronizerandroid.player;
+package khs.study.youtubesynchronizerandroid.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,11 +9,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import khs.study.youtubesynchronizerandroid.R;
-import khs.study.youtubesynchronizerandroid.common.KEY;
-import khs.study.youtubesynchronizerandroid.player.domain.YoutubeSearchResult;
-import khs.study.youtubesynchronizerandroid.player.model.HashmapToYoutubeSearchResult;
-import khs.study.youtubesynchronizerandroid.retrofit.YoutubeDataApiClient;
-import khs.study.youtubesynchronizerandroid.player.network.YoutubeDataApiNetwork;
+import khs.study.youtubesynchronizerandroid.utils.consts.KEY;
+import khs.study.youtubesynchronizerandroid.model.player.YoutubeSearchResult;
+import khs.study.youtubesynchronizerandroid.model.player.HashmapToYoutubeSearchResult;
+import khs.study.youtubesynchronizerandroid.utils.retrofit.YoutubeDataApiClient;
+import khs.study.youtubesynchronizerandroid.services.network.player.YoutubeDataApiNetwork;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

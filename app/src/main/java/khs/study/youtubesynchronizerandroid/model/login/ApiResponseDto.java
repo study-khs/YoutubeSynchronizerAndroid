@@ -1,4 +1,4 @@
-package khs.study.youtubesynchronizerandroid.domain;
+package khs.study.youtubesynchronizerandroid.model.login;
 
 import com.google.gson.annotations.SerializedName;
 

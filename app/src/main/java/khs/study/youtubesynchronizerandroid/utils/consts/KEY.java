@@ -1,4 +1,4 @@
-package khs.study.youtubesynchronizerandroid.common;
+package khs.study.youtubesynchronizerandroid.utils.consts;
 
 /**
  * Created by jaeyoung on 2017. 4. 22..

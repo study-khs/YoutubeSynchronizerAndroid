@@ -1,6 +1,4 @@
-package khs.study.youtubesynchronizerandroid.player.model;
-
-import android.util.Log;
+package khs.study.youtubesynchronizerandroid.model.player;
 
 import com.google.gson.internal.LinkedTreeMap;
 
@@ -8,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import khs.study.youtubesynchronizerandroid.player.domain.YoutubeSearchResult;
+import khs.study.youtubesynchronizerandroid.model.player.YoutubeSearchResult;
 
 /**
  * Created by jaeyoung on 2017. 4. 22..

@@ -1,4 +1,4 @@
-package khs.study.youtubesynchronizerandroid.player.network;
+package khs.study.youtubesynchronizerandroid.services.network.player;
 
 import java.util.HashMap;
 
