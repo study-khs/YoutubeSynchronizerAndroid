@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.google.firebase.FirebaseApp;
+
 import khs.study.youtubesynchronizerandroid.R;
+import khs.study.youtubesynchronizerandroid.services.StoreOnFirebase;
 import khs.study.youtubesynchronizerandroid.services.YoutubeSearch;
 
 /**
@@ -20,5 +23,7 @@ public class PlayerActivity extends Activity {
         setContentView(R.layout.activity_player);
 
         YoutubeSearch.search("성시경");
+        StoreOnFirebase.storeSearchHistory("성시굥");
+        StoreOnFirebase.storeAppTurnedOnAt();
     }
 }
