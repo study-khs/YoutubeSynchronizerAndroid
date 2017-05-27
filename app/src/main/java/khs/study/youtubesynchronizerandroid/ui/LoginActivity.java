@@ -17,12 +17,12 @@ import com.facebook.login.widget.LoginButton;
 import java.util.Arrays;
 
 import khs.study.youtubesynchronizerandroid.R;
-import khs.study.youtubesynchronizerandroid.model.login.djangotest.DjangoTestNetwork;
-import khs.study.youtubesynchronizerandroid.model.login.djangotest.DjangotestDefaultClient;
-import khs.study.youtubesynchronizerandroid.model.login.djangotest.SocialToken;
-import khs.study.youtubesynchronizerandroid.model.login.djangotest.User;
-import khs.study.youtubesynchronizerandroid.model.login.ApiResponseDto;
-import khs.study.youtubesynchronizerandroid.model.login.AuthorizationToken;
+import khs.study.youtubesynchronizerandroid.models.login.djangotest.DjangoTestNetwork;
+import khs.study.youtubesynchronizerandroid.models.login.djangotest.DjangotestDefaultClient;
+import khs.study.youtubesynchronizerandroid.models.login.djangotest.SocialToken;
+import khs.study.youtubesynchronizerandroid.models.login.djangotest.User;
+import khs.study.youtubesynchronizerandroid.models.login.ApiResponseDto;
+import khs.study.youtubesynchronizerandroid.models.login.AuthorizationToken;
 import khs.study.youtubesynchronizerandroid.utils.retrofit.DefaultClient;
 import khs.study.youtubesynchronizerandroid.services.network.login.UserJoinWithFacebookNetwork;
 import retrofit2.Call;

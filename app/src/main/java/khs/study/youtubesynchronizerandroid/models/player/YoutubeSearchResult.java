@@ -1,4 +1,4 @@
-package khs.study.youtubesynchronizerandroid.model.player;
+package khs.study.youtubesynchronizerandroid.models.player;
 
 /**
  * Created by jaeyoung on 2017. 4. 22..

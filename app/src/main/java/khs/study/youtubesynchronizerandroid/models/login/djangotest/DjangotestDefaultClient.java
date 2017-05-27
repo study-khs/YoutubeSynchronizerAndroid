@@ -1,4 +1,4 @@
-package khs.study.youtubesynchronizerandroid.model.login.djangotest;
+package khs.study.youtubesynchronizerandroid.models.login.djangotest;
 
 import khs.study.youtubesynchronizerandroid.utils.consts.URL;
 import retrofit2.Retrofit;

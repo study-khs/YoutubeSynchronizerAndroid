@@ -1,4 +1,4 @@
-package khs.study.youtubesynchronizerandroid.model.login;
+package khs.study.youtubesynchronizerandroid.models.login;
 
 import java.io.Serializable;
 

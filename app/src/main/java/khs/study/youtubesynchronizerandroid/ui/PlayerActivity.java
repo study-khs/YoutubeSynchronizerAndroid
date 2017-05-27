@@ -10,8 +10,8 @@ import java.util.List;
 
 import khs.study.youtubesynchronizerandroid.R;
 import khs.study.youtubesynchronizerandroid.utils.consts.KEY;
-import khs.study.youtubesynchronizerandroid.model.player.YoutubeSearchResult;
-import khs.study.youtubesynchronizerandroid.model.player.HashmapToYoutubeSearchResult;
+import khs.study.youtubesynchronizerandroid.models.player.YoutubeSearchResult;
+import khs.study.youtubesynchronizerandroid.models.player.HashmapToYoutubeSearchResult;
 import khs.study.youtubesynchronizerandroid.utils.retrofit.YoutubeDataApiClient;
 import khs.study.youtubesynchronizerandroid.services.network.player.YoutubeDataApiNetwork;
 import retrofit2.Call;

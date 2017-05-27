@@ -1,4 +1,4 @@
-package khs.study.youtubesynchronizerandroid.model.login.djangotest;
+package khs.study.youtubesynchronizerandroid.models.login.djangotest;
 
 /**
  * Created by jaeyoung on 2017. 4. 26..

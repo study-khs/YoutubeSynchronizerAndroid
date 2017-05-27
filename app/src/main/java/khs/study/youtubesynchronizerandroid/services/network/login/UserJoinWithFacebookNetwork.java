@@ -1,7 +1,7 @@
 package khs.study.youtubesynchronizerandroid.services.network.login;
 
-import khs.study.youtubesynchronizerandroid.model.login.ApiResponseDto;
-import khs.study.youtubesynchronizerandroid.model.login.AuthorizationToken;
+import khs.study.youtubesynchronizerandroid.models.login.ApiResponseDto;
+import khs.study.youtubesynchronizerandroid.models.login.AuthorizationToken;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
