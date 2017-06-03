@@ -37,6 +37,10 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.okhttp3:okhttp:3.3.1'
+
+    provided "org.projectlombok:lombok:1.16.8"
+    annotationProcessor "org.projectlombok:lombok:1.16.16"
+    provided 'org.glassfish:javax.annotation:10.0-b28'
 }
 
 apply plugin: 'com.google.gms.google-services'

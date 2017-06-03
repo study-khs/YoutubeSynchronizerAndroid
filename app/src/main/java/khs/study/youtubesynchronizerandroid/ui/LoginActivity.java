@@ -17,6 +17,7 @@ import com.facebook.login.widget.LoginButton;
 import java.util.Arrays;
 
 import khs.study.youtubesynchronizerandroid.R;
+import khs.study.youtubesynchronizerandroid.models.login.UserLoginForm;
 import khs.study.youtubesynchronizerandroid.models.login.trashbin.djangotest.DjangoTestNetwork;
 import khs.study.youtubesynchronizerandroid.models.login.trashbin.djangotest.DjangotestDefaultClient;
 import khs.study.youtubesynchronizerandroid.models.login.trashbin.djangotest.SocialToken;
