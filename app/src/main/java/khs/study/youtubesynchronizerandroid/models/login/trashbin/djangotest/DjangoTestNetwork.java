@@ -1,4 +1,4 @@
-package khs.study.youtubesynchronizerandroid.models.login.djangotest;
+package khs.study.youtubesynchronizerandroid.models.login.trashbin.djangotest;
 
 import java.util.HashMap;
 import java.util.List;

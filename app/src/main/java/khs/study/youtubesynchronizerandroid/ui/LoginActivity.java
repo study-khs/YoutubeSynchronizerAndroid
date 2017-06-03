@@ -17,12 +17,12 @@ import com.facebook.login.widget.LoginButton;
 import java.util.Arrays;
 
 import khs.study.youtubesynchronizerandroid.R;
-import khs.study.youtubesynchronizerandroid.models.login.djangotest.DjangoTestNetwork;
-import khs.study.youtubesynchronizerandroid.models.login.djangotest.DjangotestDefaultClient;
-import khs.study.youtubesynchronizerandroid.models.login.djangotest.SocialToken;
-import khs.study.youtubesynchronizerandroid.models.login.djangotest.User;
-import khs.study.youtubesynchronizerandroid.models.login.ApiResponseDto;
-import khs.study.youtubesynchronizerandroid.models.login.AuthorizationToken;
+import khs.study.youtubesynchronizerandroid.models.login.trashbin.djangotest.DjangoTestNetwork;
+import khs.study.youtubesynchronizerandroid.models.login.trashbin.djangotest.DjangotestDefaultClient;
+import khs.study.youtubesynchronizerandroid.models.login.trashbin.djangotest.SocialToken;
+import khs.study.youtubesynchronizerandroid.models.login.trashbin.djangotest.User;
+import khs.study.youtubesynchronizerandroid.models.login.trashbin.ApiResponseDto;
+import khs.study.youtubesynchronizerandroid.models.login.trashbin.AuthorizationToken;
 import khs.study.youtubesynchronizerandroid.utils.retrofit.DefaultClient;
 import khs.study.youtubesynchronizerandroid.services.network.login.UserJoinWithFacebookNetwork;
 import retrofit2.Call;
@@ -97,7 +97,6 @@ public class LoginActivity extends AppCompatActivity {
             setFacebookToken(loginResult.getAccessToken().getToken());
 
             sendFacebookTokenToServer();
-
             // facebook logout
         }
 

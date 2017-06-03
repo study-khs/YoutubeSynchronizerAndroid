@@ -1,4 +1,4 @@
-package khs.study.youtubesynchronizerandroid.models.login;
+package khs.study.youtubesynchronizerandroid.models.login.trashbin;
 
 import com.google.gson.annotations.SerializedName;
 
