@@ -11,6 +11,7 @@ import khs.study.youtubesynchronizerandroid.R;
 import khs.study.youtubesynchronizerandroid.models.login.UserJoinRequestDto;
 import khs.study.youtubesynchronizerandroid.models.login.dto.TokenDto;
 import khs.study.youtubesynchronizerandroid.services.network.login.LoginNetwork;
+import khs.study.youtubesynchronizerandroid.utils.GlobalApplication;
 import khs.study.youtubesynchronizerandroid.utils.retrofit.DefaultClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -80,7 +81,8 @@ public class EmailLoginActivity extends AppCompatActivity {
                 public void onResponse(Call<TokenDto> call, Response<TokenDto> response) {
                     if(response.isSuccessful()) {
                         TokenDto result = response.body();
-                        Log.d(TAG, "onResponse: " + result);
+                        Log.d(TAG, "onResponse: " + result.toString());
+                        GlobalApplication.getInstance().setUserToken(result.getData());
                     } else {
                         Log.d(TAG, "onResponse: code="+response.code());
                     }

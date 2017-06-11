@@ -1,6 +1,7 @@
 package khs.study.youtubesynchronizerandroid.utils;
 
 import android.app.Application;
+import android.util.Log;
 
 import khs.study.youtubesynchronizerandroid.models.login.Token;
 
@@ -9,6 +10,7 @@ import khs.study.youtubesynchronizerandroid.models.login.Token;
  */
 
 public class GlobalApplication extends Application {
+    private final String TAG = "JYP/"+getClass().getSimpleName();
     private static GlobalApplication mInstance;
 
     private Token userToken;
@@ -17,6 +19,7 @@ public class GlobalApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        Log.d(TAG, "onCreate: ");
         mInstance = this;
     }
 
@@ -26,6 +29,7 @@ public class GlobalApplication extends Application {
 
     public void setUserToken(Token token) {
         userToken = token;
+        Log.d(TAG, "setUserToken() called with: token = [" + token + "]");
     }
 
     public Token getUserToken() {
