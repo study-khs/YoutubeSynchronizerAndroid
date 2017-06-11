@@ -18,7 +18,7 @@
         <activity android:name=".ui.PlayerActivity">
 
         </activity>
-        <activity android:name=".ui.LoginActivity">
+        <activity android:name=".ui.EmailLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
