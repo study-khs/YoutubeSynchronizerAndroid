@@ -16,16 +16,19 @@
 
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
 
-        <activity android:name=".ui.PlayerActivity">
+        <activity android:name=".ui.PlayerActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden">
 
-        </activity>
-        <activity android:name=".ui.EmailLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.EmailLoginActivity">
 
+        </activity>
+
+        <!--  Facebook  -->
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
