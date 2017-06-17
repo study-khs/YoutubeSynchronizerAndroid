@@ -3,6 +3,7 @@ package khs.study.youtubesynchronizerandroid.utils;
 import android.app.Application;
 import android.util.Log;
 
+import io.realm.Realm;
 import khs.study.youtubesynchronizerandroid.models.login.Token;
 
 /**
@@ -21,6 +22,13 @@ public class GlobalApplication extends Application {
 
         Log.d(TAG, "onCreate: ");
         mInstance = this;
+
+        initRealm();
+    }
+
+    private void initRealm() {
+        Log.d(TAG, "initRealm: ");
+        Realm.init(this);
     }
 
     public static GlobalApplication getInstance() {

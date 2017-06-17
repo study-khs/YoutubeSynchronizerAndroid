@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import khs.study.youtubesynchronizerandroid.R;
 import khs.study.youtubesynchronizerandroid.services.db.StoreOnFirebase;
 import khs.study.youtubesynchronizerandroid.services.YoutubeSearch;
+import khs.study.youtubesynchronizerandroid.services.db.StoreOnLocal;
 
 /**
  * Created by jaeyoung on 2017. 4. 22..
@@ -22,6 +23,9 @@ public class PlayerActivity extends Activity {
 
         YoutubeSearch.search("성시경");
         StoreOnFirebase.storeSearchHistory("성시굥");
+
+        StoreOnLocal.getInstance().storeSearchHistory("성시굥");
+
         StoreOnFirebase.storeAppTurnedOnAt();
     }
 }
