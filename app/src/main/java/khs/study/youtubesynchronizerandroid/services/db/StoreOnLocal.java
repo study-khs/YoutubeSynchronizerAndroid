@@ -2,9 +2,13 @@ package khs.study.youtubesynchronizerandroid.services.db;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 import khs.study.youtubesynchronizerandroid.models.player.db.SearchKeyword;
 
 /**
@@ -38,5 +42,19 @@ public class StoreOnLocal {
         searchKeyword.setSearchCount(searchCount);
 
         realm.commitTransaction();
+    }
+
+    public List<SearchKeyword> getSearchHistories() {
+        List<SearchKeyword> searchKeywords;
+
+        Realm realm = Realm.getDefaultInstance();
+        RealmQuery<SearchKeyword> query = realm.where(SearchKeyword.class);
+
+        RealmResults<SearchKeyword> realmResults = query.findAll();
+        searchKeywords = realmResults.subList(0, realmResults.size());
+
+        Log.d(TAG, "getSearchHistories: searchKeywords="+searchKeywords.toString());
+
+        return searchKeywords;
     }
 }

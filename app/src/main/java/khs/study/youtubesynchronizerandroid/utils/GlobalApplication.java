@@ -4,7 +4,9 @@ import android.app.Application;
 import android.util.Log;
 
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import khs.study.youtubesynchronizerandroid.models.login.Token;
+import khs.study.youtubesynchronizerandroid.utils.realm.SchemaModule;
 
 /**
  * Created by jaeyoung on 2017. 6. 11..
@@ -29,6 +31,20 @@ public class GlobalApplication extends Application {
     private void initRealm() {
         Log.d(TAG, "initRealm: ");
         Realm.init(this);
+//
+//        byte[] key = new byte[64];
+//        new SecureRandom().nextBytes(key);
+        int schemaVersion = 0;
+//
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .name("youtubesynchronizer_realm.realm")
+//                .encryptionKey(key)
+                .schemaVersion(schemaVersion)
+                .modules(new SchemaModule())
+//                .migration(new MyMigration())
+                .build();
+//
+        Realm.setDefaultConfiguration(config);
     }
 
     public static GlobalApplication getInstance() {

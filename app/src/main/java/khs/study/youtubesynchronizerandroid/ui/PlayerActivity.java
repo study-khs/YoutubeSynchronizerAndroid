@@ -22,10 +22,11 @@ public class PlayerActivity extends Activity {
         setContentView(R.layout.activity_player);
 
         YoutubeSearch.search("성시경");
-        StoreOnFirebase.storeSearchHistory("성시굥");
+//        StoreOnFirebase.storeSearchHistory("성시굥");
 
         StoreOnLocal.getInstance().storeSearchHistory("성시굥");
+        StoreOnLocal.getInstance().getSearchHistories();
 
-        StoreOnFirebase.storeAppTurnedOnAt();
+//        StoreOnFirebase.storeAppTurnedOnAt();
     }
 }
