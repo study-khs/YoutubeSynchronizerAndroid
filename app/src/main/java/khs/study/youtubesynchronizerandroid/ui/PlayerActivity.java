@@ -4,10 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.google.firebase.FirebaseApp;
-
 import khs.study.youtubesynchronizerandroid.R;
-import khs.study.youtubesynchronizerandroid.services.StoreOnFirebase;
+import khs.study.youtubesynchronizerandroid.services.db.StoreOnFirebase;
 import khs.study.youtubesynchronizerandroid.services.YoutubeSearch;
 
 /**

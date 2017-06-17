@@ -1,4 +1,4 @@
-package khs.study.youtubesynchronizerandroid.services;
+package khs.study.youtubesynchronizerandroid.services.db;
 
 import android.util.Log;
 
