@@ -3,4 +3,5 @@
     <string name="facebook_app_id">108519823014335</string>
     <string name="fb_login_protocol_scheme">fb108519823014335</string>
 
+    <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
 </resources>
