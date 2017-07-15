@@ -19,9 +19,12 @@ import retrofit2.Response;
  */
 
 public class YoutubeSearch {
+    public interface Listener<T> {
+        void onSuccess(T result);
+    }
     private static final String TAG = "JYP/YoutubeSearch";
 
-    public static void search(String q) {
+    public static void search(String q, Listener<List<YoutubeSearchResult>> listener) {
         String youtubeDataApiKey = KEY.getYoutubeDataApiKey();
 
         YoutubeDataApiClient<YoutubeDataApiNetwork> mClient;
@@ -37,6 +40,7 @@ public class YoutubeSearch {
 
                 List<YoutubeSearchResult> youtubeSearchResults = HashmapToYoutubeSearchResult.convert(response.body());
                 Log.d(TAG, "onResponse: "+youtubeSearchResults.toString());
+                listener.onSuccess(youtubeSearchResults);
             }
 
             @Override
