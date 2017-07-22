@@ -12,12 +12,14 @@
         />
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_searchresults"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"
         />
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_playlist"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"
