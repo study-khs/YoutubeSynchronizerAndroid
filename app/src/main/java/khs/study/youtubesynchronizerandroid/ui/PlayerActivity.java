@@ -45,7 +45,7 @@ public class PlayerActivity extends YouTubeFailureRecoveryActivity {
         StoreOnFirebase.storeSearchHistory("성시굥");
         StoreOnFirebase.storeAppTurnedOnAt();
 
-        YouTubePlayerView youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
+        YouTubePlayerView youTubeView = (YouTubePlayerView) findViewById(R.id.youtubeview_nowplaying);
         youTubeView.initialize(DeveloperKey.DEVELOPER_KEY, this);
     }
 
@@ -71,6 +71,6 @@ public class PlayerActivity extends YouTubeFailureRecoveryActivity {
 
     @Override
     protected YouTubePlayer.Provider getYouTubePlayerProvider() {
-        return (YouTubePlayerView) findViewById(R.id.youtube_view);
+        return (YouTubePlayerView) findViewById(R.id.youtubeview_nowplaying);
     }
 }
