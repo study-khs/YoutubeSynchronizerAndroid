@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import io.reactivex.functions.Action;
 import khs.study.youtubesynchronizerandroid.R;
 import khs.study.youtubesynchronizerandroid.models.player.VideoItem;
 import khs.study.youtubesynchronizerandroid.ui.player.adapter.viewholder.PlaylistViewHolder;
@@ -16,41 +17,40 @@ import khs.study.youtubesynchronizerandroid.ui.player.adapter.viewholder.Playlis
  */
 
 public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistViewHolder> {
-    private List<VideoItem> videoItems;
+    private final Action itemClickedAction;
+    private final Action threedotClickedAction;
+    private List<VideoItem> mVideoItems;
 
-    public PlaylistAdapter() {
-    }
-
-    public PlaylistAdapter(List<VideoItem> videoItems) {
-        this.videoItems = videoItems;
+    public PlaylistAdapter(List<VideoItem> videoItems,
+                           Action itemClickedAction,
+                           Action threedotClickedAction) {
+        this.mVideoItems = videoItems;
+        this.itemClickedAction = itemClickedAction;
+        this.threedotClickedAction = threedotClickedAction;
     }
 
     @Override
     public PlaylistViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.)
-
-
-        View deviceMenuView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.device_devicemenuadapter_cardview,
+                .inflate(R.layout.item_video,
                         parent, false);
 
-        final DeviceMenuViewHolder deviceMenuViewHolder =
-                new DeviceMenuViewHolder(deviceMenuView,
-                        mDeviceItemIvClickedListener,
-                        mThreedotIvClickedListener);
+        PlaylistViewHolder playlistViewHolder = new PlaylistViewHolder(view,
+                itemClickedAction,
+                threedotClickedAction);
 
-        return deviceMenuViewHolder;
-        return null;
+        return playlistViewHolder;
     }
 
     @Override
     public void onBindViewHolder(PlaylistViewHolder holder, int position) {
+        VideoItem videoItem = mVideoItems.get(position);
 
+        holder.configureWith(videoItem);
     }
 
     @Override
     public int getItemCount() {
-        return videoItems.size();
+        return mVideoItems.size();
     }
 }
