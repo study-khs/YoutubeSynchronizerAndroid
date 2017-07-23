@@ -53,4 +53,9 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistViewHolder> {
     public int getItemCount() {
         return mVideoItems.size();
     }
+
+    public void setItems(List<VideoItem> items) {
+        this.mVideoItems = items;
+        notifyDataSetChanged();
+    }
 }

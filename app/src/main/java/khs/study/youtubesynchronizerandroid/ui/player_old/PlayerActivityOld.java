@@ -39,15 +39,7 @@
 //        super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_player);
 //
-//        YoutubeSearch.search("성시경",
-//                results -> {
-//                    Log.d(TAG, "onCreate: " + results);
-//                    mSearchResults = results;
 //
-//                    addVideoToPlaylist(mSearchResults.get(0).getVideoId());
-//                }
-//        );
-//        StoreOnFirebase.storeSearchHistory("성시굥");
 //        StoreOnFirebase.storeAppTurnedOnAt();
 //
 ////        YouTubePlayerView youTubeView = (YouTubePlayerView) findViewById(R.id.youtubeview_nowplaying);
