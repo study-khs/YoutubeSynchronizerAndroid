@@ -4,9 +4,11 @@ import android.util.Log;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Consumer;
 
 import khs.study.youtubesynchronizerandroid.models.player.HashmapToYoutubeSearchResult;
 import khs.study.youtubesynchronizerandroid.models.player.YoutubeSearchResult;
+import khs.study.youtubesynchronizerandroid.services.db.StoreOnFirebase;
 import khs.study.youtubesynchronizerandroid.services.network.player.YoutubeDataApiNetwork;
 import khs.study.youtubesynchronizerandroid.utils.consts.KEY;
 import khs.study.youtubesynchronizerandroid.utils.retrofit.YoutubeDataApiClient;
@@ -19,9 +21,19 @@ import retrofit2.Response;
  */
 
 public class YoutubeSearch {
-    private static final String TAG = "JYP/YoutubeSearch";
+    private static final String TAG = "YoutubeSearch";
+    private static YoutubeSearch mInstance;
 
-    public static void search(String q) {
+    public static YoutubeSearch getInstance() {
+        synchronized (YoutubeSearch.class) {
+            if (mInstance == null) {
+                mInstance = new YoutubeSearch();
+            }
+        }
+        return mInstance;
+    }
+
+    public void search(String q, Consumer<List<YoutubeSearchResult>> finished) {
         String youtubeDataApiKey = KEY.getYoutubeDataApiKey();
 
         YoutubeDataApiClient<YoutubeDataApiNetwork> mClient;
@@ -37,6 +49,8 @@ public class YoutubeSearch {
 
                 List<YoutubeSearchResult> youtubeSearchResults = HashmapToYoutubeSearchResult.convert(response.body());
                 Log.d(TAG, "onResponse: "+youtubeSearchResults.toString());
+                saveSearchKeywordHistory(q);
+                finished.accept(youtubeSearchResults);
             }
 
             @Override
@@ -44,5 +58,10 @@ public class YoutubeSearch {
                 Log.d(TAG, "onFailure: ");
             }
         });
+    }
+
+    private void saveSearchKeywordHistory(String q) {
+        Log.d(TAG, "saveSearchKeywordHistory() called with: q = [" + q + "]");
+        StoreOnFirebase.storeSearchHistory(q);
     }
 }
