@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
 import khs.study.youtubesynchronizerandroid.R;
 import khs.study.youtubesynchronizerandroid.models.player.VideoItem;
 import khs.study.youtubesynchronizerandroid.ui.player.adapter.viewholder.PlaylistViewHolder;
@@ -17,12 +18,12 @@ import khs.study.youtubesynchronizerandroid.ui.player.adapter.viewholder.Playlis
  */
 
 public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistViewHolder> {
-    private final Action itemClickedAction;
+    private final Consumer<VideoItem> itemClickedAction;
     private final Action threedotClickedAction;
     private List<VideoItem> mVideoItems;
 
     public PlaylistAdapter(List<VideoItem> videoItems,
-                           Action itemClickedAction,
+                           Consumer<VideoItem> itemClickedAction,
                            Action threedotClickedAction) {
         this.mVideoItems = videoItems;
         this.itemClickedAction = itemClickedAction;

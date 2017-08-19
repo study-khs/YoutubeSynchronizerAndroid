@@ -50,10 +50,6 @@
             android:name="com.facebook.FacebookContentProvider"
             android:authorities="com.facebook.app.FacebookContentProvider108519823014335"
             android:exported="true"></provider>
-
-        <activity android:name=".ui.player_old.PlayerActivityOld"
-            android:configChanges="orientation|screenSize|keyboardHidden">
-        </activity>
     </application>
 
 </manifest>

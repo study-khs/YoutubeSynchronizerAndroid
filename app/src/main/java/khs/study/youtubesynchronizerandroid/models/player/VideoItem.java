@@ -1,13 +1,18 @@
 package khs.study.youtubesynchronizerandroid.models.player;
 
+import java.io.Serializable;
+
 /**
  * Created by jaeyoung on 7/22/17.
  */
 
-public class VideoItem {
+public class VideoItem implements Serializable {
     private String thumbnailUrl;
     private String title;
     private String cueId;
+
+    public VideoItem() {
+    }
 
     public VideoItem(String thumbnailUrl, String title, String cueId) {
         this.thumbnailUrl = thumbnailUrl;
@@ -37,5 +42,14 @@ public class VideoItem {
 
     public void setCueId(String cueId) {
         this.cueId = cueId;
+    }
+
+    @Override
+    public String toString() {
+        return "VideoItem{" +
+                "thumbnailUrl='" + thumbnailUrl + '\'' +
+                ", title='" + title + '\'' +
+                ", cueId='" + cueId + '\'' +
+                '}';
     }
 }

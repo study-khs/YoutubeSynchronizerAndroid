@@ -1,5 +1,7 @@
 package khs.study.youtubesynchronizerandroid.ui.player;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,11 +15,19 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import khs.study.youtubesynchronizerandroid.R;
 import khs.study.youtubesynchronizerandroid.models.player.VideoItem;
 import khs.study.youtubesynchronizerandroid.models.player.dummy.DummyVideoItem;
+import khs.study.youtubesynchronizerandroid.ui.EmailLoginActivity;
 import khs.study.youtubesynchronizerandroid.ui.player.adapter.PlaylistAdapter;
 import khs.study.youtubesynchronizerandroid.ui.player.presenter.PlayerPresenter;
 import khs.study.youtubesynchronizerandroid.ui.player.view.PlayerView;
@@ -42,6 +52,37 @@ public class PlayerActivity extends AppCompatActivity implements PlayerView {
         Log.d(TAG, "onCreate: ");
         initPresenter();
         attachUI();
+
+        FirebaseDatabase.getInstance().getReference("item")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Log.d(TAG, "onDataChange: ");
+                        ArrayList<VideoItem> result = new ArrayList<VideoItem>();
+
+                        for (DataSnapshot item:
+                        dataSnapshot.getChildren()) {
+                            result.add(item.getValue(VideoItem.class));
+                        }
+
+                        dataLoadingFinished(result);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+    private void dataLoadingFinished(ArrayList<VideoItem> result) {
+        gotoLoginActivityWithData(result);
+    }
+
+    private void gotoLoginActivityWithData(ArrayList<VideoItem> result) {
+        Intent intent = new Intent(this, EmailLoginActivity.class);
+        intent.putExtra("VIDEOITEMS", result);
+        startActivity(intent);
     }
 
     private void initPresenter() {
@@ -69,16 +110,37 @@ public class PlayerActivity extends AppCompatActivity implements PlayerView {
 
         mAdapterSearchresults = new PlaylistAdapter(
                 DummyVideoItem.getDummyVideoItems(),
-                () -> {
-                    addToPlaylist();
+                (item) -> {
+                    addToPlaylist(item);
                     play();
+                    Log.d(TAG, "initRecyclerViews: " + item.toString());
                 },
                 this::removeFromPlaylist
         );
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("item");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d(TAG, "onDataChange: ");
+                List<VideoItem> data = new ArrayList<>();
+                for (DataSnapshot item:
+                     dataSnapshot.getChildren()) {
+                    VideoItem value = item.getValue(VideoItem.class);
+                    data.add(value);
+                }
+                mAdapterPlaylist.setItems(data);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "onCancelled: ");
+            }
+        });
+
         mAdapterPlaylist = new PlaylistAdapter(
                 DummyVideoItem.getDummyVideoItems(),
-                () -> {
-                    addToPlaylist();
+                (item) -> {
+                    addToPlaylist(item);
                     play();
                 },
                 this::removeFromPlaylist
@@ -98,8 +160,9 @@ public class PlayerActivity extends AppCompatActivity implements PlayerView {
         Log.d(TAG, "play: ");
     }
 
-    private void addToPlaylist() {
+    private void addToPlaylist(VideoItem item) {
         Log.d(TAG, "addToPlaylist: ");
+        FirebaseDatabase.getInstance().getReference().child("item").push().setValue(item);
     }
 
     @Override

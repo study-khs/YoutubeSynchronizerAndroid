@@ -4,8 +4,8 @@ import android.util.Log;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.function.Consumer;
 
+import io.reactivex.functions.Consumer;
 import khs.study.youtubesynchronizerandroid.models.player.HashmapToYoutubeSearchResult;
 import khs.study.youtubesynchronizerandroid.models.player.YoutubeSearchResult;
 import khs.study.youtubesynchronizerandroid.services.db.StoreOnFirebase;
@@ -41,7 +41,7 @@ public class YoutubeSearch {
         YoutubeDataApiNetwork mNetwork = mClient.getClient(
                 YoutubeDataApiNetwork.class);
 
-        Call<HashMap> call = mNetwork.getSearchResults(q,youtubeDataApiKey);
+        Call<HashMap> call = mNetwork.getSearchResults(q, youtubeDataApiKey);
         call.enqueue(new Callback<HashMap>() {
             @Override
             public void onResponse(Call<HashMap> call, Response<HashMap> response) {
@@ -50,7 +50,11 @@ public class YoutubeSearch {
                 List<YoutubeSearchResult> youtubeSearchResults = HashmapToYoutubeSearchResult.convert(response.body());
                 Log.d(TAG, "onResponse: "+youtubeSearchResults.toString());
                 saveSearchKeywordHistory(q);
-                finished.accept(youtubeSearchResults);
+                try {
+                    finished.accept(youtubeSearchResults);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
